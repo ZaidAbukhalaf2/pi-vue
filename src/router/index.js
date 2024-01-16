@@ -1,25 +1,74 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
+  { path: "/login", component: () => import("../pages/LoginAdmin.vue") },
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "",
+    component: () => import("../pages/WrapperDashboard.vue"),
+    children: [
+      {
+        path: "/category/list",
+        name: "categoryList",
+        component: () => import("../pages/Category/CategoryList.vue"),
+      },
+      {
+        path: "/category/create",
+        name: "categoryCreate",
+        component: () => import("../pages/Category/CategoryCreate.vue"),
+      },
+      {
+        path: "/category/update/:id",
+        component: () => import("../pages/Category/CategoryUpdate.vue"),
+      },
+      {
+        path: "/tag/list",
+        name: "tagList",
+        component: () => import("../pages/Tags/TagsList.vue"),
+      },
+      {
+        path: "/tag/create",
+        name: "tagCreate",
+        component: () => import("../pages/Tags/TagsCreate.vue"),
+      },
+      {
+        path: "/tag/update/:id",
+        component: () => import("../pages/Tags/TagsUpdate.vue"),
+      },
+      {
+        path: "/product-tag/list",
+        name: "product-tag",
+        component: () => import("../pages/ProductTags/ProductTagsList.vue"),
+      },
+      {
+        path: "/product-tag/create",
+        name: "product-tag-create",
+        component: () => import("../pages/ProductTags/ProductTagsCreate.vue"),
+      },
+      {
+        path: "/product-tag/update/:id",
+        component: () => import("../pages/ProductTags/ProductTagsUpdate.vue"),
+      },
+      {
+        path: "/product/list",
+        name: "product",
+        component: () => import("../pages/Product/ProductList.vue"),
+      },
+      {
+        path: "/product/create",
+        name: "product-create",
+        component: () => import("../pages/Product/ProductCreate.vue"),
+      },
+      {
+        path: "/product/update/:id",
+        component: () => import("../pages/Product/ProductUpdate.vue"),
+      },
+    ],
   },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
